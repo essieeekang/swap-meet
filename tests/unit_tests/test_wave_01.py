@@ -1,11 +1,14 @@
-# The following line imports the Vendor class from the module vendor inside the swap_meet package.
-import pytest
+# The following line imports the Vendor class from the module vendor inside
+# the swap_meet package.
+# import pytest
 from swap_meet.vendor import Vendor
+
 
 # @pytest.mark.skip
 def test_vendor_has_inventory():
     vendor = Vendor()
     assert len(vendor.inventory) == 0
+
 
 # @pytest.mark.skip
 def test_vendor_takes_optional_inventory():
@@ -15,6 +18,7 @@ def test_vendor_takes_optional_inventory():
     assert "a" in vendor.inventory
     assert "b" in vendor.inventory
     assert "c" in vendor.inventory
+
 
 # @pytest.mark.skip
 def test_adding_to_inventory():
@@ -26,6 +30,7 @@ def test_adding_to_inventory():
     assert len(vendor.inventory) == 1
     assert item in vendor.inventory
     assert result == item
+
 
 # @pytest.mark.skip
 def test_removing_from_inventory_returns_item():
@@ -40,6 +45,7 @@ def test_removing_from_inventory_returns_item():
     assert item not in vendor.inventory
     assert result == item
 
+
 # @pytest.mark.skip
 def test_removing_not_found_is_false():
     item = "item to remove"
@@ -49,7 +55,7 @@ def test_removing_not_found_is_false():
 
     result = vendor.remove(item)
 
-    assert result == False
+    assert result is False
     # *********************************************************************
     # ****** Complete Assert Portion of this test **********
     # *********************************************************************
