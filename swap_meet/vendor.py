@@ -1,3 +1,6 @@
+from swap_meet.math import my_max, my_min
+
+
 class Vendor:
 
     def __init__(self, inventory=None):
@@ -51,7 +54,7 @@ class Vendor:
     def get_best_by_category(self, category):
         items = self.get_by_category(category)
         try:
-            best_item = max(items, key=lambda item: item.condition)
+            best_item = my_max(items, key=lambda item: item.condition)
             return best_item
         except ValueError:
             return None
@@ -67,11 +70,11 @@ class Vendor:
         return True
 
     def get_newest(self):
-        if not self.inventory:
+        try:
+            newest_item = my_min(self.inventory, key=lambda item: item.age)
+            return newest_item
+        except ValueError:
             return None
-
-        newest_item = min(self.inventory, key=lambda item: item.age)
-        return newest_item
 
     def swap_by_newest(self, other_vendor):
         my_newest_item = self.get_newest()
